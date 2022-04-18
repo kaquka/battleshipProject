@@ -28,7 +28,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     public VentanaJuego() {
         initComponents();
         panelsInit();
-        
+        //sisisi
     }
     
     public void panelsInit(){
