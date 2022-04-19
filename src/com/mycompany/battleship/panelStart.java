@@ -4,6 +4,11 @@
  */
 package com.mycompany.battleship;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 /**
  *
  * @author avalo
@@ -13,7 +18,11 @@ public class panelStart extends javax.swing.JPanel {
     /**
      * Creates new form panelStart
      */
+    
+    FondoPanel fondo = new FondoPanel();
+    
     public panelStart() {
+        this.setconte
         initComponents();
     }
 
@@ -48,7 +57,19 @@ public class panelStart extends javax.swing.JPanel {
         VentanaJuego.getPnlRegistro().setVisible(true);
     }//GEN-LAST:event_startBtnActionPerformed
 
-
+class FondoPanel extends JPanel{
+    private Image imagen;
+    
+    public void paint(Graphics g){
+        imagen = new ImageIcon(getClass().getResource("/icons/fondoStart.jpeg")).getImage();
+        
+        g.drawImage(imagen, 800,600 , this);
+        setOpaque(false);
+        super.paint(g);
+    }
+    
+}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton startBtn;
     // End of variables declaration//GEN-END:variables
