@@ -16,6 +16,7 @@ public class PanelTablero extends JPanel{
 	
 	public PanelTablero() {
 		//Construimos celdas para las "aguas"
+                this.setOpaque(false);
 		celdas = new Celda[tablength][tablength];
 		for (int i = 0; i < tablength; i++)
 			for (int j = 0; j < tablength; j++)
@@ -33,7 +34,7 @@ public class PanelTablero extends JPanel{
 		 //La grilla se rellena fila a fila.
 		 //1� fila
                  JPanel p=new JPanel();
-                 p.setBackground(Color.white);
+                 p.setOpaque(false);
 		 add(p);//Primera celda de la grilla no ser� nada, solo un panel vac�o.
 		 //A continuaci�n, las Celdas con n�mero para las Columnas, o sea, el eje Y de coordenadas
 		 for (Celda valorEjeY: celdasY)

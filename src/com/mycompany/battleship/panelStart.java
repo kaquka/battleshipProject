@@ -19,11 +19,14 @@ public class panelStart extends javax.swing.JPanel {
      * Creates new form panelStart
      */
     
-    FondoPanel fondo = new FondoPanel();
+    private static Panel fondoPanel;
     
     public panelStart() {
-        this.setconte
         initComponents();
+        fondoPanel=new Panel("/icons/Naval4 (1).jpg");
+        fondoPanel.setBounds(0, 0, 800, 600);
+        fondoPanel.setVisible(true);
+        add(fondoPanel);
     }
 
     /**
@@ -36,9 +39,10 @@ public class panelStart extends javax.swing.JPanel {
     private void initComponents() {
 
         startBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         startBtn.setText("Empezar");
         startBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -47,7 +51,39 @@ public class panelStart extends javax.swing.JPanel {
                 startBtnActionPerformed(evt);
             }
         });
-        add(startBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 113, 41));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/titlebattleship.png"))); // NOI18N
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bittengrape.png"))); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(247, 247, 247))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(startBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(335, 335, 335))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(startBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
@@ -57,20 +93,11 @@ public class panelStart extends javax.swing.JPanel {
         VentanaJuego.getPnlRegistro().setVisible(true);
     }//GEN-LAST:event_startBtnActionPerformed
 
-class FondoPanel extends JPanel{
-    private Image imagen;
-    
-    public void paint(Graphics g){
-        imagen = new ImageIcon(getClass().getResource("/icons/fondoStart.jpeg")).getImage();
-        
-        g.drawImage(imagen, 800,600 , this);
-        setOpaque(false);
-        super.paint(g);
-    }
-    
-}
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton startBtn;
     // End of variables declaration//GEN-END:variables
 }

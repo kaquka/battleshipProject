@@ -16,18 +16,22 @@ public class panelJuego extends javax.swing.JPanel {
      * Creates new form panelJuego
      */
     private static PanelTablero tablero;
-    
-    final DefaultComboBoxModel modelTab = new DefaultComboBoxModel(new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"});
+    private static Panel fondoPanel;
     
     public panelJuego() {
         initComponents();
         initTablero();
+        fondoPanel=new Panel("/icons/fondoJuego.jpeg");
+        fondoPanel.setBounds(0, 0, 800, 600);
+        fondoPanel.setVisible(true);
+        add(fondoPanel);
+        
     }
     
     public void initTablero(){
         tablero=new PanelTablero();
         tablero.setBounds(50, 50, 600, 400);
-        tablero.setBackground(new java.awt.Color(255, 255, 255));
+        //tablero.setBackground(new java.awt.Color(255, 255, 255));
         tablero.setVisible(true);
         
         add(tablero);
