@@ -13,8 +13,15 @@ public class panelMenu extends javax.swing.JPanel {
     /**
      * Creates new form panelMenu
      */
+    private static Panel image1;
+    
     public panelMenu() {
+        
         initComponents();
+        image1=new Panel("/icons/menu.png");
+        image1.setBounds(0, 0, 800, 600);
+        image1.setVisible(true);
+        add(image1);
     }
 
     /**
@@ -30,6 +37,7 @@ public class panelMenu extends javax.swing.JPanel {
         playBtn = new javax.swing.JButton();
         scoreBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         jButton1.setText("jButton1");
