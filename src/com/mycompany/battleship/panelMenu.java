@@ -13,15 +13,15 @@ public class panelMenu extends javax.swing.JPanel {
     /**
      * Creates new form panelMenu
      */
-    private static Panel image1;
+    private static Panel siu;
     
     public panelMenu() {
         
         initComponents();
-        image1=new Panel("/icons/menu.png");
-        image1.setBounds(0, 0, 800, 600);
-        image1.setVisible(true);
-        add(image1);
+        siu=new Panel("/icons/menu.png");
+        siu.setBounds(0, 0, 800, 600);
+        siu.setVisible(true);
+        add(siu);
     }
 
     /**

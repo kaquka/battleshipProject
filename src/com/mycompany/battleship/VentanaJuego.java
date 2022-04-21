@@ -78,6 +78,11 @@ public class VentanaJuego extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         outBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/check-out.png"))); // NOI18N
         outBtn.setToolTipText("Salir de juego");
@@ -131,6 +136,10 @@ public class VentanaJuego extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_outBtnMouseEntered
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments
