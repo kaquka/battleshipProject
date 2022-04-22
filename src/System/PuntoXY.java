@@ -1,4 +1,4 @@
-package com.mycompany.battleship.system;
+package System;
 public class PuntoXY {
 	
 	public int x;

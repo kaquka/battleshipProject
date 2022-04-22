@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.battleship;
+package GUI;
+
+import System.Tablero;
 
 /**
  *
@@ -74,8 +76,6 @@ public class VentanaJuego extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Battleship");
         setLocation(new java.awt.Point(0, 0));
-        setMaximumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -168,6 +168,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        Tablero tableroJ = new Tablero();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaJuego().setVisible(true);

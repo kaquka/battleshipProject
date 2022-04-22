@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mycompany.battleship;
+package GUI;
 
 import javax.swing.JOptionPane;
 
@@ -86,9 +86,9 @@ public class panelRegistro extends javax.swing.JPanel {
     private void signinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinBtnActionPerformed
         // TODO add your handling code here: DEBE LLEVAR A MENU
         //CHECA EN BASE DE DATOS SI ESTA EL JUGADOR, SINO LO REGISTRA Y TIENE QUE GUARDARSE EN LA VARIABLE JUGADOR.
-        //VentanaJuego.getPnlRegistro().setVisible(false);
-        //VentanaJuego.getPnlMenu().setVisible(true);
-        JOptionPane.showMessageDialog(null, birthdate.getText());
+        VentanaJuego.getPnlRegistro().setVisible(false);
+        VentanaJuego.getPnlMenu().setVisible(true);
+        //JOptionPane.showMessageDialog(null, birthdate.getText());
     }//GEN-LAST:event_signinBtnActionPerformed
 
     private void birthdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_birthdateMouseClicked
