@@ -34,7 +34,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="outBtn" min="-2" pref="47" max="-2" attributes="0"/>
-              <EmptySpace pref="526" max="32767" attributes="0"/>
+              <EmptySpace pref="726" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,7 +43,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Component id="outBtn" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace pref="340" max="32767" attributes="0"/>
+              <EmptySpace pref="540" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
