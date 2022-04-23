@@ -1,80 +1,11 @@
 package System;
 
-import java.util.Scanner;
-import java.util.*;
-import java.io.*;
-
 public class SistemaBattleship{
-    Scanner lee = new Scanner(System.in);
 
-    public static void guardarArchivo(Tablero tablero){
+    public static void main(String[] args){
 
-        FileOutputStream archivo;
-        try {
-            archivo = new FileOutputStream("Tablero4.dat");
-            ObjectOutputStream salida = new ObjectOutputStream(archivo);
-            salida.writeObject(tablero);
-            salida.close();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            System.err.println("Error al guardar el archivo");
-        }
-         
-    }
-
-    public static Tablero elegirArchivo(){
-        Tablero recuperado = new Tablero();
-        Random random = new Random();
-        ArrayList<String> archivos = new ArrayList<>();
-        archivos.add("Tablero1.dat");
-        archivos.add("Tablero2.dat");
-        archivos.add("Tablero3.dat");
-        archivos.add("Tablero4.dat");
-        archivos.add("Tablero5.dat");
-        int a = random.nextInt(5);
-        FileInputStream archivo2;
-        try {
-            archivo2 = new FileInputStream((String) archivos.get(a));
-            ObjectInputStream entrada = new ObjectInputStream(archivo2);
-            recuperado = (Tablero)entrada.readObject();
-            entrada.close();
-        } catch (Exception e1) {
-            // TODO Auto-generated catch block
-            System.err.println("Error al recuperar archivo");
-        }        
         
-        return recuperado;
-    }
-
-    public static Tablero elegirArchivo(String nombre){
-        Tablero recuperado = new Tablero();
-        FileInputStream archivo2;
-        try {
-            //archivo2 = new FileInputStream((String) archivos.get(a));
-            archivo2 = new FileInputStream(nombre);
-            ObjectInputStream entrada = new ObjectInputStream(archivo2);
-            recuperado = (Tablero)entrada.readObject();
-            entrada.close();
-        } catch (Exception e1) {
-            // TODO Auto-generated catch block
-            System.err.println("Error al recuperar archivo");
-        }        
-        
-        return recuperado;
-    }
-
-    private int menu(){
-        int op;
-        System.out.println("Menu:\n 1.-Otra partida\n 2.-Mostrar score particular\n 3.Mostrar score general\n 4.-salir\n Opcion:_");
-        op=lee.nextInt();
-        return op;
-    }
-
-    public static void main(String[] args)throws IOException, ClassNotFoundException{
-
-        //Jugador Miguel = new Jugador("Miguel", 1995, 1,6);
-        
-       /* Seccion s1 = new Seccion(0,1);
+        Seccion s1 = new Seccion(0,1);
         Seccion s2 = new Seccion(0,2);
         Seccion s3 = new Seccion(0,3);
 
@@ -112,7 +43,7 @@ public class SistemaBattleship{
 
         Seccion s28 = new Seccion(9,0);
         Seccion s29 = new Seccion(9,1);
-        Seccion s30 = new Seccion(9,2);*/ //Aqui es mi parte
+        Seccion s30 = new Seccion(9,2); //Aqui es mi parte
 
         /*Seccion s1 = new Seccion(0,3);
         Seccion s2 = new Seccion(0,4);
@@ -152,7 +83,7 @@ public class SistemaBattleship{
 
         Seccion s28 = new Seccion(9,7);
         Seccion s29 = new Seccion(9,8);
-        Seccion s30 = new Seccion(9,9);
+        Seccion s30 = new Seccion(9,9);*/
 
         Seccion secciones[]={s1,s2,s3};
         Seccion secciones1[]={s4,s5,s6};
@@ -181,40 +112,7 @@ public class SistemaBattleship{
         Tablero tablero = new Tablero (barcos);
 
         
-        guardarArchivo(tablero);*/
-
-
-        Tablero tablero1 = elegirArchivo();
-        tablero1.imprimeTableroPartida();
-        System.out.println();
-
-        /*Tablero tablero2 = elegirArchivo("Tablero2.dat");
-        System.out.println("Tablero 2\n");
-        tablero2.imprimeTableroPartida();
-        System.out.println();
-
-        Tablero tablero3 = elegirArchivo("Tablero3.dat");
-        System.out.println("Tablero 3\n");
-        tablero3.imprimeTableroPartida();
-        System.out.println();
-
-        Tablero tablero4 = elegirArchivo("Tablero4.dat");
-        System.out.println("Tablero 4\n");
-        tablero4.imprimeTableroPartida();
-        System.out.println();
-
-        Tablero tablero5 = elegirArchivo("Tablero5.dat");
-        System.out.println("Tablero 5\n");
-        tablero5.imprimeTableroPartida();
-        System.out.println();*/
-
-        /*tablero.actualizarTablero(0, 1, Miguel);
-        System.out.println();
-        tablero.actualizarTablero(0, 2, Miguel);
-        System.out.println();
-        tablero.actualizarTablero(0, 3, Miguel);
-        System.out.println();
-        tablero.actualizarTablero(0, 7, Miguel);*/
+        Archivo.guardarArchivo(tablero);
     }
     
 }

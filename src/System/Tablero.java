@@ -3,54 +3,26 @@ package System;
 import java.io.Serializable;
 
 public class Tablero implements Serializable{
-    private int partidaTablero[][] = new int [10][10];
-    private int tablero[][] = new int [10][10];
-    private Barco barco[]=new Barco[10];
+    //private int partidaTablero[][] = new int [10][10];
+    private static int longitud=10;
+    private int tablero[][] = new int [longitud][longitud];
+    private Barco barco[]=new Barco[longitud];
 
     public Tablero(){}
     
     public Tablero(Barco barco[]){
-        limpiaTablero(partidaTablero);
-        limpiaTablero(tablero);
+        limpiaTablero(this.tablero);
         this.barco=barco;
         asignaBarcos(barco);
     }
 
     public Tablero(int tab[][],Barco barcos[]){
-        limpiaTablero(partidaTablero);
         this.tablero=tab;
         this.barco=barcos;//no sabemos si esto es legal, asignacion entre arrays
     }
-
-    /*  Editado por: Azarel Pazos
-        El método actualizarTablero se encarga de actualizar el tablero dado las coordenadas
-        que haya seleccionado el jugador.
-        En este métododo se imprime el tablero en caso de ser necesario, si el jugador
-        selecciona una casilla que ya haya seleccionado anteriormente no se imprimirá
-        el tablero, en su lugra se mostrará un mensaje que indica que ya ha seleccionado esa
-        casilla
-        */
-    public boolean actualizarTablero(int x, int y, Jugador jugador){
-        if(jugador.getBarcosHundidos()<10 && jugador.getIntentos()>0){
-            if(checarCasilla(x, y)){
-                imprimirTablero(partidaTablero);
-                if(partidaTablero[x][y]==1){ // le dió a un barco
-                    if(barco[tablero[x][y]].isHundido()){
-                        System.out.println("Has hundido un barco!!!");
-                        jugador.aumentaBarcosHundidos();
-                        jugador.aumentaIntentos();
-                    }else{
-                        System.out.println("Le has dado a un barco!!!");
-                    }
-                }else{ 
-                    System.out.println("No hay algún barco en esa zona!!!");
-                    jugador.restaIntentos();
-                }
-            }else
-                System.out.println("Ya ha seleccionado esa casilla anteriormente!!!");
-            return true;
-        }
-        return false;
+    
+    public int getCasillaTablero(int x, int y){
+        return this.tablero[x][y]; 
     }
 
     /*  Editado por: Azarel Pazos
@@ -59,24 +31,33 @@ public class Tablero implements Serializable{
         Se retornará 1 en el caso de que el jugador haya seleccionado
         una casilla que no haya seleccionado anteriormente y por ende se
         debe actualizar el tablero*/
-    private boolean checarCasilla(int x, int y){
-        int iBarco=tablero[x][y];
-
-        if(partidaTablero[x][y]==-1){//significa que en la coordenada seleccionada no ha sido seleccionada anteriormente
-            if(iBarco!=-1){ //le dió a una parte del barco
+    public int checarCasilla(int x, int y, Jugador jugador){
+        int iBarco=this.tablero[x][y];
+        
+        if(iBarco==-1){
+            jugador.restaIntentos();
+            this.tablero[x][y]=longitud;
+            return 2;
+        }else{
+            if(iBarco>=0 && iBarco<=(longitud-1)){
                 this.barco[iBarco].hit(x,y);
-                partidaTablero[x][y]=1; // 1 indica que el jugador le dió a un barco
-            }else
-                partidaTablero[x][y]=2; // 2 indica que no le dió a nada
-            return true;
+                if(this.barco[iBarco].isHundido()){
+                    jugador.aumentaBarcosHundidos();
+                    jugador.aumentaIntentos();
+                }
+                this.tablero[x][y]=longitud;
+                return 1;
+            }
+            return 0;
         }
-
-        return false;
     }
+    
+    
+    
     
     /*  Editado por: Angel
         Esta funcion va a imprimir una matriz en forma de tablero */
-    public void imprimirTablero(int a[][]){
+    /*public void imprimirTablero(int a[][]){
 
 
         for (int x=0; x < a.length; x++) {
@@ -87,21 +68,15 @@ public class Tablero implements Serializable{
             }
             System.out.println("\n");
         }
-    }
-
-    public void imprimeTableroPartida(){
-        imprimirTablero(partidaTablero);
-        System.out.println("Tablero\n");
-        imprimirTablero(tablero);
-    }
+    }*/
 
     /*  Editado por: Azarel Pazos
         Inicializa el tablero en -1, el cual indica que no hay nada en las casillas (no hay barcos)*/
     private void limpiaTablero(int tablero[][]){
-        int i, j, longRen=tablero.length, longCol=tablero[0].length;
+        int i, j;
 
-        for(i=0; i<longRen; i++){
-            for(j=0; j<longCol; j++)
+        for(i=0; i<longitud; i++){
+            for(j=0; j<longitud; j++)
                 tablero[i][j]=-1;
         }
 
@@ -110,7 +85,7 @@ public class Tablero implements Serializable{
     /*  Editado por: Azarel Pazos
         Asigna barcos al tablero*/
     private void asignaBarcos(Barco barco[]){
-        int i, j, longitud=barco.length, secciones=barco[0].getLenghtSecciones();
+        int i, j, secciones=barco[0].getLenghtSecciones();
         Seccion SeccAux;
 
         for(i=0; i<longitud; i++)

@@ -4,7 +4,10 @@
  */
 package GUI;
 
-import javax.swing.DefaultComboBoxModel;
+import System.Jugador;
+import System.Tablero;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +20,8 @@ public class panelJuego extends javax.swing.JPanel {
      */
     private static PanelTablero tablero;
     private static Panel fondoPanel;
+    private Tablero tableroLogico;
+    private Jugador jugador;
     
     public panelJuego() {
         initComponents();
@@ -26,6 +31,14 @@ public class panelJuego extends javax.swing.JPanel {
         fondoPanel.setVisible(true);
         add(fondoPanel);
         
+    }
+    
+    public void setTableroLogico(Tablero tableroLogico){
+        this.tableroLogico=tableroLogico;
+    }
+    
+    public void setJugador(Jugador jugador){
+        this.jugador=jugador;
     }
     
     public void initTablero(){
@@ -121,8 +134,28 @@ public class panelJuego extends javax.swing.JPanel {
 
     private void shootBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shootBtnActionPerformed
         // TODO add your handling code here:
-        coordenadaX.getSelectedItem();
+        int op, x, y;
+        x=Integer.parseInt(coordenadaX.getSelectedItem().toString());
+        y=Integer.parseInt(coordenadaY.getSelectedItem().toString());
+        op=tableroLogico.checarCasilla(x, y, jugador);
         
+        switch(op){
+            case 0:
+                JOptionPane.showMessageDialog(null, "Ya has seleccionado esa casilla anteriormente");
+                break;
+            case 1:
+                tablero.setColor(x, y, Color.RED);
+                break;
+            case 2:
+                tablero.setColor(x, y, Color.BLUE);
+                break;
+            default:
+                break;
+        }
+        
+        if(jugador.getBarcosHundidos()==10 || jugador.getIntentos()==0)
+            JOptionPane.showMessageDialog(null, "Fin de partida");
+            
     }//GEN-LAST:event_shootBtnActionPerformed
 
     private void coordenadaXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coordenadaXActionPerformed

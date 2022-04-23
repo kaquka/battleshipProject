@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import System.Archivo;
+import System.Jugador;
+
 /**
  *
  * @author avalo
@@ -83,6 +86,12 @@ public class panelMenu extends javax.swing.JPanel {
 
     private void playBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playBtnActionPerformed
         // TODO add your handling code here:DEBE LLEVAR A panelJuego
+        
+       VentanaJuego.setJugador(new Jugador("Azarel", 2001, 11, 20));
+        
+        VentanaJuego.getPnlJuego().setTableroLogico(Archivo.getArchivo("src/Files/Tablero1.dat"));
+        VentanaJuego.getPnlJuego().setJugador(VentanaJuego.getJugador());
+        
         VentanaJuego.getPnlMenu().setVisible(false);
         VentanaJuego.getPnlJuego().setVisible(true);
     }//GEN-LAST:event_playBtnActionPerformed

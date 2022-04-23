@@ -49,6 +49,26 @@ public class PanelTablero extends JPanel{
 		
     }
     
+    public void setColor(int x, int y, Color color){
+        celdas[x][y].setBackground(color);
+    }
+    
+    public void marcaCasilla(int x, int y, int op){
+        switch(op){
+            case 0:
+                break;
+            case 1:
+                
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
+    }
+    
 	/**
 	 * Habr�n dos tipos de Celdas.
 	 * Una tendr� una etiqueta para mostrar el n�mero de fila
@@ -80,6 +100,8 @@ public class PanelTablero extends JPanel{
 			add(numCelda);
 			setBackground(Color.BLACK);
 		}
+                
+          
 	}
 
 }

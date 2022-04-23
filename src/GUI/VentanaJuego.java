@@ -1,9 +1,10 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
 
+import System.Jugador;
 import System.Tablero;
 
 /**
@@ -20,6 +21,8 @@ public class VentanaJuego extends javax.swing.JFrame {
     private static panelRegistro pnlRegistro;
     private static panelJuego pnlJuego;
     private static panelScore pnlsScore;
+    
+    private static Jugador jugador;
 
     static Object getAtrasBtn() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -168,7 +171,6 @@ public class VentanaJuego extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        Tablero tableroJ = new Tablero();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaJuego().setVisible(true);
@@ -196,6 +198,13 @@ public class VentanaJuego extends javax.swing.JFrame {
         return pnlsScore;
     }
     
+    public static void setJugador(Jugador jugador){
+        VentanaJuego.jugador=jugador;
+    }
+    
+    public static Jugador getJugador(){
+        return jugador;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
