@@ -31,6 +31,10 @@ public class panelJuego extends javax.swing.JPanel {
         fondoPanel.setVisible(true);
         add(fondoPanel);
         mensajeTiro.setVisible(false);
+        NumBarcos.setVisible(true);
+        nBarco.setVisible(true);
+        muestraIntentos.setVisible(true);
+        nIntentos.setVisible(true);
     }
     
     public void setTableroLogico(Tablero tableroLogico){
@@ -65,6 +69,10 @@ public class panelJuego extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         coordenadaY = new javax.swing.JComboBox<>();
         mensajeTiro = new javax.swing.JLabel();
+        NumBarcos = new javax.swing.JLabel();
+        nBarco = new javax.swing.JLabel();
+        muestraIntentos = new javax.swing.JLabel();
+        nIntentos = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -96,6 +104,29 @@ public class panelJuego extends javax.swing.JPanel {
         coordenadaY.setMaximumRowCount(10);
         coordenadaY.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
 
+        mensajeTiro.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        mensajeTiro.setForeground(new java.awt.Color(255, 255, 255));
+
+        NumBarcos.setFont(new java.awt.Font("Lato Black", 0, 18)); // NOI18N
+        NumBarcos.setForeground(new java.awt.Color(255, 255, 255));
+        NumBarcos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NumBarcos.setText("Barcos Hundidos: ");
+
+        nBarco.setFont(new java.awt.Font("Lato Black", 0, 18)); // NOI18N
+        nBarco.setForeground(new java.awt.Color(255, 255, 255));
+        nBarco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nBarco.setText("0");
+
+        muestraIntentos.setFont(new java.awt.Font("Lato Black", 0, 18)); // NOI18N
+        muestraIntentos.setForeground(new java.awt.Color(255, 255, 255));
+        muestraIntentos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        muestraIntentos.setText("Intentos:");
+
+        nIntentos.setFont(new java.awt.Font("Lato Black", 0, 18)); // NOI18N
+        nIntentos.setForeground(new java.awt.Color(255, 255, 255));
+        nIntentos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nIntentos.setText("10");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,11 +149,28 @@ public class panelJuego extends javax.swing.JPanel {
                         .addGap(105, 105, 105)
                         .addComponent(shootBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(182, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nIntentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(NumBarcos, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                    .addComponent(nBarco, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(muestraIntentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(447, Short.MAX_VALUE)
+                .addGap(115, 115, 115)
+                .addComponent(NumBarcos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nBarco, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(muestraIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nIntentos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -149,20 +197,27 @@ public class panelJuego extends javax.swing.JPanel {
         x=Integer.parseInt(coordenadaX.getSelectedItem().toString());
         y=Integer.parseInt(coordenadaY.getSelectedItem().toString());
         op=tableroLogico.checarCasilla(x, y, jugador);
-        
+        mensajeTiro.setVisible(true);
         switch(op){
             case 0:
+                mensajeTiro.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Ya has seleccionado esa casilla anteriormente");
                 break;
             case 1:
                 tablero.setColor(x, y, Color.RED);
+                 mensajeTiro.setText("  Has acertado!!");
                 break;
             case 2:
                 tablero.setColor(x, y, Color.BLUE);
+                 mensajeTiro.setText("  Has fallado!!");
                 break;
             default:
                 break;
         }
+        NumBarcos.setText("Barcos Hundidos:");
+        nBarco.setText(""+jugador.getBarcosHundidos());
+        muestraIntentos.setText("Intentos:");
+        nIntentos.setText(""+jugador.getIntentos());
         
         if(jugador.getBarcosHundidos()==10 || jugador.getIntentos()==0)
             JOptionPane.showMessageDialog(null, "Fin de partida");
@@ -175,11 +230,15 @@ public class panelJuego extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel NumBarcos;
     private javax.swing.JComboBox<String> coordenadaX;
     private javax.swing.JComboBox<String> coordenadaY;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel mensajeTiro;
+    private javax.swing.JLabel muestraIntentos;
+    private javax.swing.JLabel nBarco;
+    private javax.swing.JLabel nIntentos;
     private javax.swing.JButton shootBtn;
     // End of variables declaration//GEN-END:variables
 }
