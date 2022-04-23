@@ -155,7 +155,7 @@ public class panelJuego extends javax.swing.JPanel {
         
         if(jugador.getBarcosHundidos()==10 || jugador.getIntentos()==0)
             JOptionPane.showMessageDialog(null, "Fin de partida");
-            
+           
     }//GEN-LAST:event_shootBtnActionPerformed
 
     private void coordenadaXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coordenadaXActionPerformed
