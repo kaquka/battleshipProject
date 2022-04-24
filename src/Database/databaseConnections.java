@@ -11,7 +11,7 @@ import java.sql.*;
  *
  * @author avalo
  */
-public class dbCreator {
+public class databaseConnections {
     private static final String url = "jdbc:mysql://sql10.freesqldatabase.com:3306/";
     private static final String dbName = "sql10487845";
     private static final String driver = "com.mysql.cj.jdbc.Driver";
