@@ -21,7 +21,6 @@ public class panelJuego extends javax.swing.JPanel {
     private static PanelTablero tablero;
     private static Panel fondoPanel;
     private Tablero tableroLogico;
-    private Jugador jugador;
     
     public panelJuego() {
         initComponents();
@@ -39,10 +38,6 @@ public class panelJuego extends javax.swing.JPanel {
     
     public void setTableroLogico(Tablero tableroLogico){
         this.tableroLogico=tableroLogico;
-    }
-    
-    public void setJugador(Jugador jugador){
-        this.jugador=jugador;
     }
     
     public void initTablero(){
@@ -196,7 +191,7 @@ public class panelJuego extends javax.swing.JPanel {
         int op, x, y;
         x=Integer.parseInt(coordenadaX.getSelectedItem().toString());
         y=Integer.parseInt(coordenadaY.getSelectedItem().toString());
-        op=tableroLogico.checarCasilla(x, y, jugador);
+        op=tableroLogico.checarCasilla(x, y, VentanaJuego.getJugador());
         mensajeTiro.setVisible(true);
         switch(op){
             case 0:
@@ -215,11 +210,11 @@ public class panelJuego extends javax.swing.JPanel {
                 break;
         }
         NumBarcos.setText("Barcos Hundidos:");
-        nBarco.setText(""+jugador.getBarcosHundidos());
+        nBarco.setText(""+VentanaJuego.getJugador().getBarcosHundidos());
         muestraIntentos.setText("Intentos:");
-        nIntentos.setText(""+jugador.getIntentos());
+        nIntentos.setText(""+VentanaJuego.getJugador().getIntentos());
         
-        if(jugador.getBarcosHundidos()==10 || jugador.getIntentos()==0)
+        if(VentanaJuego.getJugador().getBarcosHundidos()==10 || VentanaJuego.getJugador().getIntentos()==0)
             JOptionPane.showMessageDialog(null, "Fin de partida");
            
     }//GEN-LAST:event_shootBtnActionPerformed

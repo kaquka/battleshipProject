@@ -12,6 +12,7 @@ public class Jugador{
         this.nombre=String.valueOf(nombre);
         fechaNacimiento=anio+"/"+mes+"/"+dia;
         intentos=10;
+        barcosHundidos=0;
     }
     
     public void setNombre(String nombre){

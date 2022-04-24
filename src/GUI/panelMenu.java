@@ -90,7 +90,6 @@ public class panelMenu extends javax.swing.JPanel {
        VentanaJuego.setJugador(new Jugador("Azarel", 2001, 11, 20));
         
         VentanaJuego.getPnlJuego().setTableroLogico(Archivo.getArchivo("src/Files/Tablero1.dat"));
-        VentanaJuego.getPnlJuego().setJugador(VentanaJuego.getJugador());
         
         VentanaJuego.getPnlMenu().setVisible(false);
         VentanaJuego.getPnlJuego().setVisible(true);
