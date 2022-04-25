@@ -4,7 +4,13 @@
  */
 package GUI;
 
+import Database.databaseConnections;
+import System.Jugador;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
 
 /**
  *
@@ -15,8 +21,12 @@ public class panelRegistro extends javax.swing.JPanel {
     /**
      * Creates new form panelRegistro
      */
+    
+    databaseConnections database;
+    
     public panelRegistro() {
         initComponents();
+        database=new databaseConnections();
         //initImage();
     }
 
@@ -30,33 +40,17 @@ public class panelRegistro extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        birthdate = new javax.swing.JFormattedTextField();
         txtFieldName = new javax.swing.JTextField();
         signinBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
         setVerifyInputWhenFocusTarget(false);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        birthdate.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fecha de nacimiento", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Stencil", 1, 36))); // NOI18N
-        birthdate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy/MM/dd"))));
-        birthdate.setText("yyyy/mm/dd");
-        birthdate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        birthdate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                birthdateMouseClicked(evt);
-            }
-        });
-        birthdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                birthdateActionPerformed(evt);
-            }
-        });
-        add(birthdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 458, 80));
 
         txtFieldName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtFieldName.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Stencil", 1, 36))); // NOI18N
@@ -77,28 +71,51 @@ public class panelRegistro extends javax.swing.JPanel {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Webp.net-resizeimage (1).png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, -1, -1));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void birthdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_birthdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_birthdateActionPerformed
+        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
+        jDateChooser1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fecha de nacimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Stencil", 1, 36))); // NOI18N
+        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 450, 110));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void signinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinBtnActionPerformed
         // TODO add your handling code here: DEBE LLEVAR A MENU
         //CHECA EN BASE DE DATOS SI ESTA EL JUGADOR, SINO LO REGISTRA Y TIENE QUE GUARDARSE EN LA VARIABLE JUGADOR.
-        VentanaJuego.getPnlRegistro().setVisible(false);
-        VentanaJuego.getPnlMenu().setVisible(true);
+        
+         //PRIMERO PREGUNTA SI EL NOMBRE SE ENCUENTRA BANEADO VERIFICANDO EL ARCHIVO DE BANEADOS
+        //SI ESTA BANEADO NO LO DEJA PASAR, SI NO LO ESTA ENTONCES CALCULA SI ES MENOR DE EDAD
+        if (!txtFieldName.getText().isEmpty()&&jDateChooser1.getDate()!=null) {
+            LocalDate fecha_nacimientoLD = DateUtils.asLocalDate(jDateChooser1.getDate());
+            LocalDate hoy = LocalDate.now();
+            Period periodo = Period.between(fecha_nacimientoLD, hoy);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            if(periodo.getYears()>=18){//SI ES MAYOR DE EDAD ENTONCES REVISA SI ESTA EN LA BASE DE DATOS
+                if(database.verificaJugador(txtFieldName.getText(), sdf.format(jDateChooser1.getDate()))){
+                    System.out.println("existe, lo rellena");
+                    VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),sdf.format(jDateChooser1.getDate())));
+                    System.out.println(VentanaJuego.getJugador().toString());
+                }else{
+                    System.out.println("No existe, lo crea");
+                    database.registro(txtFieldName.getText(), sdf.format(jDateChooser1.getDate()));
+                    VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),sdf.format(jDateChooser1.getDate())));
+                    System.out.println(VentanaJuego.getJugador().toString());
+                }
+                VentanaJuego.getPnlRegistro().setVisible(false);
+                VentanaJuego.getPnlMenu().setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Eres menor de edad, no puedes jugar");
+            //banea nombre LO GUARDA EN UN ARCHIVO
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Llene los campos necesarios.");
+        }
+        txtFieldName.setText("");
+        jDateChooser1.setCalendar(null);
         //JOptionPane.showMessageDialog(null, birthdate.getText());
     }//GEN-LAST:event_signinBtnActionPerformed
 
-    private void birthdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_birthdateMouseClicked
-        // TODO add your handling code here:
-        birthdate.setText("");
-    }//GEN-LAST:event_birthdateMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField birthdate;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

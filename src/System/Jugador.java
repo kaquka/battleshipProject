@@ -8,11 +8,23 @@ public class Jugador{
     private int intentos;
     private int barcosHundidos;
 
+    public Jugador(String nombre, String fecha){
+        this.nombre=nombre;
+        this.fechaNacimiento=fecha;
+        intentos=10;
+        barcosHundidos=0;
+    }
+    
     public Jugador(String nombre, int anio, int  mes, int dia){
         this.nombre=String.valueOf(nombre);
         fechaNacimiento=anio+"/"+mes+"/"+dia;
         intentos=10;
         barcosHundidos=0;
+    }
+
+    @Override
+    public String toString() {
+        return "Jugador{" + "nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
     
     public void setNombre(String nombre){
