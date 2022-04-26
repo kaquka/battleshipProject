@@ -25,7 +25,7 @@ public class panelJuego extends javax.swing.JPanel {
     public panelJuego() {
         initComponents();
         initTablero();
-        fondoPanel=new Panel("/icons/fondoJuego.jpeg");
+        fondoPanel=new Panel("/icons/agua (1).jpg");
         fondoPanel.setBounds(0, 0, 800, 600);
         fondoPanel.setVisible(true);
         add(fondoPanel);
@@ -73,7 +73,7 @@ public class panelJuego extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         shootBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/objetivo (2).png"))); // NOI18N
-        shootBtn.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SHOT!", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Stencil", 1, 12))); // NOI18N
+        shootBtn.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FIRE!!", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Stencil", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         shootBtn.setContentAreaFilled(false);
         shootBtn.setDoubleBuffered(true);
         shootBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +83,7 @@ public class panelJuego extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("X");
 
         coordenadaX.setMaximumRowCount(10);
@@ -94,6 +95,7 @@ public class panelJuego extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Y");
 
         coordenadaY.setMaximumRowCount(10);
@@ -130,15 +132,14 @@ public class panelJuego extends javax.swing.JPanel {
                 .addGap(158, 158, 158)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(coordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(67, 67, 67)
+                        .addComponent(jLabel1)
+                        .addGap(147, 147, 147)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(163, 163, 163)
+                                .addComponent(coordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)
                                 .addComponent(coordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(mensajeTiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(105, 105, 105)
@@ -167,18 +168,18 @@ public class panelJuego extends javax.swing.JPanel {
                 .addComponent(nIntentos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(shootBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(coordenadaX)
-                            .addComponent(coordenadaY, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(coordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(coordenadaY, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mensajeTiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
