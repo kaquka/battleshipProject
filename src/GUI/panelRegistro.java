@@ -5,6 +5,7 @@
 package GUI;
 
 import Database.databaseConnections;
+import System.Archivo;
 import System.Jugador;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -100,7 +101,8 @@ public class panelRegistro extends javax.swing.JPanel {
                     System.out.println(VentanaJuego.getJugador().toString());
                 }
                 VentanaJuego.getPnlRegistro().setVisible(false);
-                VentanaJuego.getPnlMenu().setVisible(true);
+                VentanaJuego.getPnlJuego().setTableroLogico(Archivo.getArchivo("src/Files/Tablero1.dat"));
+                VentanaJuego.getPnlJuego().setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Eres menor de edad, no puedes jugar");
             //banea nombre LO GUARDA EN UN ARCHIVO

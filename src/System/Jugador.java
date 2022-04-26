@@ -3,6 +3,7 @@ package System;
 import java.lang.String;
 
 public class Jugador{
+    private int id;
     private String nombre;
     private String fechaNacimiento;
     private int intentos;
@@ -25,6 +26,14 @@ public class Jugador{
     @Override
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + '}';
+    }
+    
+    public void setId(int id){
+        this.id=id;
+    }
+    
+    public int getId(){
+        return this.id;
     }
     
     public void setNombre(String nombre){
