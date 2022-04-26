@@ -31,6 +31,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="464" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -43,20 +44,23 @@
                       </Group>
                       <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                       <Component id="shootBtn" min="-2" pref="96" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="182" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="nIntentos" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="nIntentos" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="NumBarcos" pref="153" max="32767" attributes="0"/>
+                      <Component id="nBarco" min="-2" pref="134" max="-2" attributes="0"/>
+                      <Component id="muestraIntentos" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="NumBarcos" pref="153" max="32767" attributes="0"/>
-                  <Component id="nBarco" min="-2" pref="134" max="-2" attributes="0"/>
-                  <Component id="muestraIntentos" alignment="0" max="32767" attributes="0"/>
+                  <Component id="BotonSalida" alignment="1" min="-2" pref="78" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -64,7 +68,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="BotonSalida" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Component id="NumBarcos" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="nBarco" min="-2" pref="14" max="-2" attributes="0"/>
@@ -247,6 +253,18 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="10"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BotonSalida">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/icons/exit.png"/>
+        </Property>
+        <Property name="borderPainted" type="boolean" value="false"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonSalidaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
