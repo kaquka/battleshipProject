@@ -4,9 +4,10 @@
  */
 package GUI;
 
-import System.Jugador;
 import System.Tablero;
+import System.Tupla;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,7 @@ public class panelJuego extends javax.swing.JPanel {
     private static PanelTablero tablero;
     private static Panel fondoPanel;
     private Tablero tableroLogico;
+    private ArrayList<Tupla> lista = new ArrayList<>();
     
     public panelJuego() {
         initComponents();
@@ -219,10 +221,12 @@ public class panelJuego extends javax.swing.JPanel {
             case 1:
                 tablero.setColor(x, y, Color.RED);
                  mensajeTiro.setText("  Has acertado!!");
+                 lista.add(new Tupla(x,y));
                 break;
             case 2:
                 tablero.setColor(x, y, Color.BLUE);
                  mensajeTiro.setText("  Has fallado!!");
+                 lista.add(new Tupla(x,y));
                 break;
             default:
                 break;
@@ -248,6 +252,12 @@ public class panelJuego extends javax.swing.JPanel {
         if (respuesta == 0){
             VentanaJuego.getPnlMenu().setVisible(true);
             VentanaJuego.getPnlJuego().setVisible(false);
+            
+            Tupla tupla;
+            while(!lista.isEmpty()){
+                tupla=lista.remove(0);
+                tablero.setColor(tupla.getX(), tupla.getY(), Color.WHITE);
+            }
         }
     }//GEN-LAST:event_BotonSalidaActionPerformed
 
