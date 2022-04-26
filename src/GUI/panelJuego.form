@@ -60,7 +60,10 @@
                       <Component id="nBarco" min="-2" pref="134" max="-2" attributes="0"/>
                       <Component id="muestraIntentos" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="BotonSalida" alignment="1" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="BotonSalida" min="-2" pref="124" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
       </Group>
@@ -69,7 +72,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="BotonSalida" min="-2" max="-2" attributes="0"/>
+              <Component id="BotonSalida" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Component id="NumBarcos" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -257,7 +260,7 @@
     <Component class="javax.swing.JButton" name="BotonSalida">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/exit.png"/>
+          <Image iconType="3" name="/icons/flecha-hacia-atras.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>

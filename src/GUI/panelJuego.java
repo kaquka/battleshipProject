@@ -125,7 +125,7 @@ public class panelJuego extends javax.swing.JPanel {
         nIntentos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nIntentos.setText("10");
 
-        BotonSalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exit.png"))); // NOI18N
+        BotonSalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/flecha-hacia-atras.png"))); // NOI18N
         BotonSalida.setBorderPainted(false);
         BotonSalida.setContentAreaFilled(false);
         BotonSalida.addActionListener(new java.awt.event.ActionListener() {
@@ -166,13 +166,15 @@ public class panelJuego extends javax.swing.JPanel {
                         .addComponent(NumBarcos, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                         .addComponent(nBarco, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(muestraIntentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(BotonSalida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BotonSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(BotonSalida)
+                .addComponent(BotonSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
                 .addComponent(NumBarcos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -242,7 +244,11 @@ public class panelJuego extends javax.swing.JPanel {
 
     private void BotonSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalidaActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showOptionDialog();
+        int respuesta = JOptionPane.showConfirmDialog(null, "Se perdera tu progreso si sales\n ¿Deseas continuar?" );
+        if (respuesta == 0){
+            VentanaJuego.getPnlMenu().setVisible(true);
+            VentanaJuego.getPnlJuego().setVisible(false);
+        }
     }//GEN-LAST:event_BotonSalidaActionPerformed
 
 
