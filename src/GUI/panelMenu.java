@@ -43,7 +43,7 @@ public class panelMenu extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Score personal");
 
         playBtn.setText("Jugar");
         playBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +52,7 @@ public class panelMenu extends javax.swing.JPanel {
             }
         });
 
-        scoreBtn.setText("Scores");
+        scoreBtn.setText(" Scores generales");
         scoreBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scoreBtnActionPerformed(evt);
@@ -66,9 +66,9 @@ public class panelMenu extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(96, 96, 96)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(playBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                .addGap(100, 100, 100)
                 .addComponent(scoreBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78))
         );

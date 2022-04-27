@@ -27,9 +27,9 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" pref="140" max="-2" attributes="0"/>
-              <EmptySpace pref="120" max="32767" attributes="0"/>
+              <EmptySpace pref="106" max="32767" attributes="0"/>
               <Component id="playBtn" min="-2" pref="140" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Component id="scoreBtn" min="-2" pref="140" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
           </Group>
@@ -52,7 +52,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
+        <Property name="text" type="java.lang.String" value="Score personal"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="playBtn">
@@ -65,7 +65,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="scoreBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Scores"/>
+        <Property name="text" type="java.lang.String" value=" Scores generales"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scoreBtnActionPerformed"/>

@@ -6,15 +6,11 @@ package System;
 
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +24,7 @@ public class Archivo {
 
         FileOutputStream archivo;
         try {
-            archivo = new FileOutputStream("src/Files/Tablero1.dat");
+            archivo = new FileOutputStream("src/Files/Tablero5.dat");
             ObjectOutputStream salida = new ObjectOutputStream(archivo);
             salida.writeObject(tablero);
             salida.close();
