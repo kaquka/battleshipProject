@@ -9,8 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 /**
  *
@@ -37,14 +36,18 @@ public class Archivo {
     
     public static Tablero elegirArchivo(){
         Tablero recuperado = new Tablero();
-        Random random = new Random();
+        Random rnd = new Random();
         ArrayList<String> archivos = new ArrayList<>();
+        int a;
+        
         archivos.add("src/Files/Tablero1.dat");
         archivos.add("src/Files/Tablero2.dat");
         archivos.add("src/Files/Tablero3.dat");
         archivos.add("src/Files/Tablero4.dat");
         archivos.add("src/Files/Tablero5.dat");
-        int a = random.nextInt(5);
+        
+        a=rnd.nextInt(5);
+        System.out.println("Random: "+a);
         FileInputStream archivo;
         try {
             archivo = new FileInputStream((String) archivos.get(a));
@@ -72,7 +75,6 @@ public class Archivo {
         } catch (Exception ex) {
             System.err.println(ex);
         }
-            
         
         return recuperado;
     }

@@ -241,8 +241,8 @@ public class panelJuego extends javax.swing.JPanel {
                 break;
             case 1:
                 tablero.setColor(x, y, Color.RED);
-                 mensajeTiro.setText("  Has acertado!!");
-                 lista.add(new PuntoXY(x,y));
+                mensajeTiro.setText("  Has acertado!!");
+                lista.add(new PuntoXY(x,y));
                 break;
             case 2:
                 tablero.setColor(x, y, Color.BLUE);
@@ -252,13 +252,15 @@ public class panelJuego extends javax.swing.JPanel {
             default:
                 break;
         }
-        NumBarcos.setText("Barcos Hundidos:");
-        nBarco.setText(""+VentanaJuego.getJugador().getBarcosHundidos());
-        muestraIntentos.setText("Intentos:");
-        nIntentos.setText(""+VentanaJuego.getJugador().getIntentos());
         
         barcosHund=VentanaJuego.getJugador().getBarcosHundidos();
         intentos=VentanaJuego.getJugador().getIntentos();
+        
+        NumBarcos.setText("Barcos Hundidos:");
+        nBarco.setText(""+barcosHund);
+        muestraIntentos.setText("Intentos:");
+        nIntentos.setText(""+intentos);
+        
         if(barcosHund==10 || intentos==0){
             String mensaje="JUGADOR: "+VentanaJuego.getJugador().getNombre()+"\nEdad: "+VentanaJuego.getJugador().getEdad()+"\n";
             

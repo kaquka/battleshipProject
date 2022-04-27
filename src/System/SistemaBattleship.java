@@ -1,10 +1,12 @@
 package System;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class SistemaBattleship{
 
     public static void main(String[] args){
 
-        
         /*Seccion s1 = new Seccion(0,1);
         Seccion s2 = new Seccion(0,2);
         Seccion s3 = new Seccion(0,3);
@@ -169,7 +171,7 @@ public class SistemaBattleship{
         Seccion s30 = new Seccion(9,9);*/ //Hasta aqui
         
         //Tablero 5
-        Seccion s1 = new Seccion(0,7);
+        /*Seccion s1 = new Seccion(0,7);
         Seccion s2 = new Seccion(0,8);
         Seccion s3 = new Seccion(0,9);
 
@@ -231,11 +233,13 @@ public class SistemaBattleship{
         Barco b9 = new Barco(secciones8);
         Barco b10 = new Barco(secciones9);
 
-        Barco barcos[]={b1,b2,b3,b4,b5,b6,b7,b8,b9,b10};
-
-        Tablero tablero = new Tablero (barcos);
-
-        Archivo.guardarArchivo(tablero);
+        Barco barcos[]={b1,b2,b3,b4,b5,b6,b7,b8,b9,b10};*/
+        
+        int i;
+        Tablero tablero;
+        
+        for(i=0; i<100; i++)
+                tablero = Archivo.elegirArchivo();
         
     }
     
