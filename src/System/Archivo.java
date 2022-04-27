@@ -16,9 +16,10 @@ import java.util.*;
  * @author azare
  */
 public class Archivo {
-    
-    public Archivo(){}
-    
+   
+    /*Función que permite guardar en tablero en un archivo binario.
+        No se utilza en el programa por que no se requiere.
+        Para agregar el nombre con la ruta del archivo se debe modificar  esta función.*/
     public static void guardarArchivo(Tablero tablero){
 
         FileOutputStream archivo;
@@ -34,10 +35,14 @@ public class Archivo {
          
     }
     
+    /*Función que regresa un Tablero de cinco al azar.
+        Se utilza en el programa.
+        Si se quiere agregar otro tablero se debe modificar la función.*/
     public static Tablero elegirArchivo(){
         Tablero recuperado = new Tablero();
         Random rnd = new Random();
         ArrayList<String> archivos = new ArrayList<>();
+        FileInputStream archivo;
         int a;
         
         archivos.add("src/Files/Tablero1.dat");
@@ -47,21 +52,20 @@ public class Archivo {
         archivos.add("src/Files/Tablero5.dat");
         
         a=rnd.nextInt(5);
-        System.out.println("Random: "+a);
-        FileInputStream archivo;
         try {
             archivo = new FileInputStream((String) archivos.get(a));
             ObjectInputStream entrada = new ObjectInputStream(archivo);
             recuperado = (Tablero)entrada.readObject();
             entrada.close();
         } catch (Exception e1) {
-            // TODO Auto-generated catch block
-            System.err.println("Error al recuperar archivo");
+            System.err.println(e1);
         }        
         
         return recuperado;
     }
     
+    /*Funcion para obtener un Tablero dada una ruta
+        No se utiliza como tal en el programa ya que es para hacer pruebas*/
     public static Tablero getArchivo(String ruta){
         Tablero recuperado = new Tablero();
         FileInputStream archivo;

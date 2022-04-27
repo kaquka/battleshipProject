@@ -18,9 +18,10 @@ public class Tablero implements Serializable{
 
     public Tablero(int tab[][],Barco barcos[]){
         this.tablero=tab;
-        this.barco=barcos;//no sabemos si esto es legal, asignacion entre arrays
+        this.barco=barcos;
     }
     
+    /*Regresa el contenido del tablero dada una coordenada pasada por parámetro*/
     public int getCasillaTablero(int x, int y){
         return this.tablero[x][y]; 
     }
@@ -28,9 +29,10 @@ public class Tablero implements Serializable{
     /*  Editado por: Azarel Pazos
         El método checarCasilla verifica si hay un barco o parte de este
         en la posición x e y, que son variables pasadas por parámetro.
-        Se retornará 1 en el caso de que el jugador haya seleccionado
-        una casilla que no haya seleccionado anteriormente y por ende se
-        debe actualizar el tablero*/
+        Se retorna:
+        0 en caso de que la casilla con coordenadas (x,y) hayan sido seleccionadas anteriormente
+        1 en caso de que en la coordenada seleccionada (x,y) se encuentre un barco
+        2 en caso de que no haya barco en la coordenada (x,y)*/
     public int checarCasilla(int x, int y, Jugador jugador){
         int iBarco=this.tablero[x][y];
         

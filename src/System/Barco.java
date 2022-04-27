@@ -1,6 +1,7 @@
 package System;
 
 import java.io.Serializable;
+
 public class Barco implements Serializable{
     private boolean hundido;
     private Seccion SeccionDeBarco[];
@@ -10,6 +11,7 @@ public class Barco implements Serializable{
         this.SeccionDeBarco = seccionesDeBarco;
     }
 
+    /*Función que retorna true en caso de que se haya hundido el barco*/
     public boolean isHundido(){
         return hundido;
     }
@@ -19,11 +21,13 @@ public class Barco implements Serializable{
     public Seccion getSeccion(int i) {
         return SeccionDeBarco[i];//OJITO: solo hay 3 secciones, verificar si es necesario poner restriccion
     }
-
+    
+    /*Funcion que regresa el número de secciones que tiene el barco, se podría decir que es su longitud*/
     public int getLenghtSecciones(){
         return SeccionDeBarco.length;
     }
 
+    /*Asigna un correspondiente al atributo hundido cuando haya verificado el estado de sus secciones*/
     private void hundirse(){
         this.hundido=verificaSecciones();
     }
@@ -38,7 +42,8 @@ public class Barco implements Serializable{
         }
         return true;
     }
-
+    
+    /*Función que marca con un hit/golpe a una sección del barco, por ende marca es a sección como no funcional*/
     public void hit(int y){
         int i;
 

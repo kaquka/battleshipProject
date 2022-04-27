@@ -21,6 +21,7 @@ public class Jugador{
         barcosHundidos=0;
     }
     
+    /*Calcula la edad de un jugador dada su fecha de nacimiento*/
     private int calcularEdad(Date fecha){
         Period periodo = Period.between(DateUtils.asLocalDate(fecha), LocalDate.now());
         return periodo.getYears();

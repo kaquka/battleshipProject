@@ -1,8 +1,5 @@
 package System;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class SistemaBattleship{
 
     public static void main(String[] args){
@@ -235,11 +232,9 @@ public class SistemaBattleship{
 
         Barco barcos[]={b1,b2,b3,b4,b5,b6,b7,b8,b9,b10};*/
         
-        int i;
-        Tablero tablero;
         
-        for(i=0; i<100; i++)
-                tablero = Archivo.elegirArchivo();
+        Tablero tablero;
+        tablero = Archivo.elegirArchivo();
         
     }
     
