@@ -87,7 +87,7 @@ public class panelMenu extends javax.swing.JPanel {
     private void playBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playBtnActionPerformed
         // TODO add your handling code here:DEBE LLEVAR A panelJuego
         
-        VentanaJuego.getPnlJuego().setTableroLogico(Archivo.getArchivo("src/Files/Tablero1.dat"));
+        VentanaJuego.getPnlJuego().setTableroLogico(Archivo.elegirArchivo());
         
         VentanaJuego.getPnlMenu().setVisible(false);
         VentanaJuego.getPnlJuego().setVisible(true);

@@ -101,7 +101,7 @@ public class panelRegistro extends javax.swing.JPanel {
                     System.out.println(VentanaJuego.getJugador().toString());
                 }
                 VentanaJuego.getPnlRegistro().setVisible(false);
-                VentanaJuego.getPnlJuego().setTableroLogico(Archivo.getArchivo("src/Files/Tablero1.dat"));
+                VentanaJuego.getPnlJuego().setTableroLogico(Archivo.elegirArchivo());
                 VentanaJuego.getPnlJuego().setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Eres menor de edad, no puedes jugar");
