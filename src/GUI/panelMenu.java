@@ -44,6 +44,11 @@ public class panelMenu extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         jButton1.setText("Score personal");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         playBtn.setText("Jugar");
         playBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +103,12 @@ public class panelMenu extends javax.swing.JPanel {
         VentanaJuego.getPnlMenu().setVisible(false);
         VentanaJuego.getPnlsScore().setVisible(true);
     }//GEN-LAST:event_scoreBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        VentanaJuego.getPnlMenu().setVisible(false);
+        VentanaJuego.getPnlScorePersonal().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

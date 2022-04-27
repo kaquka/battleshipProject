@@ -21,6 +21,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     private static panelRegistro pnlRegistro;
     private static panelJuego pnlJuego;
     private static panelScore pnlsScore;
+    private static panelScorePersonal pnlScoreP;
     
     private static Jugador jugador;
 
@@ -62,6 +63,11 @@ public class VentanaJuego extends javax.swing.JFrame {
         pnlsScore.setBounds(0, 0, width, height);
         pnlsScore.setVisible(false);
         add(pnlsScore);
+        
+        pnlScoreP=new panelScorePersonal();
+        pnlScoreP.setBounds(0, 0, width, height);
+        pnlScoreP.setVisible(false);
+        add(pnlScoreP);
         
     }
 
@@ -131,7 +137,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         pnlRegistro.setVisible(false);
         pnlJuego.setVisible(false);
         pnlsScore.setVisible(false);
-        
+        pnlScoreP.setVisible(false);
     }//GEN-LAST:event_outBtnActionPerformed
 
     private void outBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outBtnMouseEntered
@@ -196,6 +202,10 @@ public class VentanaJuego extends javax.swing.JFrame {
 
     public static panelScore getPnlsScore() {
         return pnlsScore;
+    }
+    
+    public static panelScorePersonal getPnlScorePersonal() {
+        return pnlScoreP;
     }
     
     public static void setJugador(Jugador jugador){

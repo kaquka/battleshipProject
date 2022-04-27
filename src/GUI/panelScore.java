@@ -67,8 +67,8 @@ public class panelScore extends javax.swing.JPanel {
 
     private void atrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBtnActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-        VentanaJuego.getPnlMenu().setVisible(true);
+        setVisible(true);
+        VentanaJuego.getPnlMenu().setVisible(false);
     }//GEN-LAST:event_atrasBtnActionPerformed
 
 
