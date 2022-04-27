@@ -75,13 +75,13 @@ public class panelScore extends javax.swing.JPanel {
                 atrasBtnActionPerformed(evt);
             }
         });
-        add(atrasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, -1, -1));
+        add(atrasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void atrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBtnActionPerformed
         // TODO add your handling code here:
-        setVisible(true);
-        VentanaJuego.getPnlMenu().setVisible(false);
+        setVisible(false);
+        VentanaJuego.getPnlMenu().setVisible(true);
     }//GEN-LAST:event_atrasBtnActionPerformed
 
     public JTable getjTableScores() {

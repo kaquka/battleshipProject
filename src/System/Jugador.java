@@ -6,7 +6,7 @@ import java.time.Period;
 import java.util.Date;
 
 public class Jugador{
-    private int id;
+    private String id;
     private String nombre;
     private Date fechaNacimiento;
     private int edad;
@@ -32,11 +32,11 @@ public class Jugador{
         return "Jugador{" + "nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
     
-    public void setId(int id){
+    public void setId(String id){
         this.id=id;
     }
     
-    public int getId(){
+    public String getId(){
         return this.id;
     }
     

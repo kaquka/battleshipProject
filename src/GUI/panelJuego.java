@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Database.databaseConnections;
 import System.PuntoXY;
 import System.Tablero;
 import java.awt.Color;
@@ -272,6 +273,8 @@ public class panelJuego extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, mensaje, "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
             VentanaJuego.getPnlMenu().setVisible(true);
             VentanaJuego.getPnlJuego().setVisible(false);
+            databaseConnections dbc = new databaseConnections();
+            dbc.agregarPartida(VentanaJuego.getJugador().getId(), barcosHund);
             limpiaTablero();
         }
            

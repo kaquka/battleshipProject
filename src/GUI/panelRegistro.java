@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 
 /**
  *
@@ -100,6 +99,8 @@ public class panelRegistro extends javax.swing.JPanel {
                     VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),jDateChooser1.getDate()));
                     System.out.println(VentanaJuego.getJugador().toString());
                 }
+                
+                VentanaJuego.getJugador().setId(database.consultaID(txtFieldName.getText(), sdf.format(jDateChooser1.getDate())));
                 VentanaJuego.getPnlRegistro().setVisible(false);
                 VentanaJuego.getPnlJuego().setTableroLogico(Archivo.elegirArchivo());
                 VentanaJuego.getPnlJuego().setVisible(true);
