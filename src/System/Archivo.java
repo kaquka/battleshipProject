@@ -6,11 +6,15 @@ package System;
 
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -62,15 +66,18 @@ public class Archivo {
     public static Tablero getArchivo(String ruta){
         Tablero recuperado = new Tablero();
         FileInputStream archivo;
+        ObjectInputStream entrada;
+        
         try {
             archivo = new FileInputStream(ruta);
-            ObjectInputStream entrada = new ObjectInputStream(archivo);
+            entrada = new ObjectInputStream(archivo);
             recuperado = (Tablero)entrada.readObject();
             entrada.close();
-        } catch (Exception e1) {
-            // TODO Auto-generated catch block
-            System.err.println("Error al recuperar archivo");
+        } catch (Exception ex) {
+            System.err.println(ex);
         }
+            
+        
         return recuperado;
     }
 }

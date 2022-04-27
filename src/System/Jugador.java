@@ -1,26 +1,29 @@
 package System;
 
-import java.lang.String;
+import GUI.DateUtils;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
 
 public class Jugador{
     private int id;
     private String nombre;
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
+    private int edad;
     private int intentos;
     private int barcosHundidos;
 
-    public Jugador(String nombre, String fecha){
+    public Jugador(String nombre, Date fecha){
         this.nombre=nombre;
         this.fechaNacimiento=fecha;
+        edad=calcularEdad(fecha);
         intentos=10;
         barcosHundidos=0;
     }
     
-    public Jugador(String nombre, int anio, int  mes, int dia){
-        this.nombre=String.valueOf(nombre);
-        fechaNacimiento=anio+"/"+mes+"/"+dia;
-        intentos=10;
-        barcosHundidos=0;
+    private int calcularEdad(Date fecha){
+        Period periodo = Period.between(DateUtils.asLocalDate(fecha), LocalDate.now());
+        return periodo.getYears();
     }
 
     @Override
@@ -43,17 +46,21 @@ public class Jugador{
     public String getNombre(){
         return nombre;
     }
-
-    public void setFechaNacimiento(int anio, int  mes, int dia){
-        fechaNacimiento=anio+"/"+mes+"/"+dia;
+    
+    public int getEdad(){
+        return edad;
     }
-
-    public String getFechaNacimiento(){
-        return fechaNacimiento;
+    
+    public void setIntentos(int intentos){
+        this.intentos=intentos;
     }
-
+    
     public int getIntentos(){
         return intentos;
+    }
+    
+    public void setBarcosHundidos(int barcosHundidos){
+        this.barcosHundidos=barcosHundidos;
     }
 
     public int getBarcosHundidos(){

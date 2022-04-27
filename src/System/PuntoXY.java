@@ -1,6 +1,7 @@
 package System;
-public class PuntoXY {
-	
+
+
+public class PuntoXY{
 	private int x;
 	private int y;
 	

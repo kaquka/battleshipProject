@@ -50,6 +50,24 @@ public class panelJuego extends javax.swing.JPanel {
         
         add(tablero);
     }
+    
+    private void limpiaTablero(){
+        Tupla tupla;
+        
+        VentanaJuego.getJugador().setIntentos(10);
+        VentanaJuego.getJugador().setBarcosHundidos(0);
+        nBarco.setText(""+VentanaJuego.getJugador().getBarcosHundidos());
+        nIntentos.setText(""+VentanaJuego.getJugador().getIntentos());
+        mensajeTiro.setText("");
+        
+        coordenadaX.setSelectedIndex(0);
+        coordenadaY.setSelectedIndex(0);
+        
+        while(!lista.isEmpty()){
+            tupla=lista.remove(0);
+            tablero.setColor(tupla.getX(), tupla.getY(), Color.WHITE);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -208,11 +226,14 @@ public class panelJuego extends javax.swing.JPanel {
 
     private void shootBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shootBtnActionPerformed
         // TODO add your handling code here:
-        int op, x, y;
+        int op, x, y, barcosHund, intentos;
+        
         x=Integer.parseInt(coordenadaX.getSelectedItem().toString());
         y=Integer.parseInt(coordenadaY.getSelectedItem().toString());
-        op=tableroLogico.checarCasilla(x, y, VentanaJuego.getJugador());
+        
         mensajeTiro.setVisible(true);
+        op=tableroLogico.checarCasilla(x, y, VentanaJuego.getJugador());
+        
         switch(op){
             case 0:
                 mensajeTiro.setVisible(false);
@@ -236,9 +257,21 @@ public class panelJuego extends javax.swing.JPanel {
         muestraIntentos.setText("Intentos:");
         nIntentos.setText(""+VentanaJuego.getJugador().getIntentos());
         
-        if(VentanaJuego.getJugador().getBarcosHundidos()==10 || VentanaJuego.getJugador().getIntentos()==0)
+        barcosHund=VentanaJuego.getJugador().getBarcosHundidos();
+        intentos=VentanaJuego.getJugador().getIntentos();
+        if(barcosHund==10 || intentos==0){
+            String mensaje="JUGADOR: "+VentanaJuego.getJugador().getNombre()+"\nEdad: "+VentanaJuego.getJugador().getEdad()+"\n";
             
-            JOptionPane.showMessageDialog(null, "Fin de partida");
+            if(barcosHund==10)
+                mensaje+="FELICIDADES ¡HAS GANADO LA BATALLA!";
+            else
+                mensaje+="SENTIMOS INFORMARTE QUE HAS PERDIDO LA BATALLA.\nHas hundido "+barcosHund+" barco(s).";
+            
+            JOptionPane.showMessageDialog(null, mensaje, "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
+            VentanaJuego.getPnlMenu().setVisible(true);
+            VentanaJuego.getPnlJuego().setVisible(false);
+            limpiaTablero();
+        }
            
     }//GEN-LAST:event_shootBtnActionPerformed
 
@@ -248,16 +281,11 @@ public class panelJuego extends javax.swing.JPanel {
 
     private void BotonSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalidaActionPerformed
         // TODO add your handling code here:
-        int respuesta = JOptionPane.showConfirmDialog(null, "Se perdera tu progreso si sales\n ¿Deseas continuar?" );
+        int respuesta = JOptionPane.showConfirmDialog(null, "Se perderá tu progreso si sales\n ¿Deseas continuar?", "Abandonar partida", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
         if (respuesta == 0){
             VentanaJuego.getPnlMenu().setVisible(true);
             VentanaJuego.getPnlJuego().setVisible(false);
-            
-            Tupla tupla;
-            while(!lista.isEmpty()){
-                tupla=lista.remove(0);
-                tablero.setColor(tupla.getX(), tupla.getY(), Color.WHITE);
-            }
+            limpiaTablero();
         }
     }//GEN-LAST:event_BotonSalidaActionPerformed
 

@@ -1,11 +1,13 @@
 package System;
 
 import java.io.Serializable;
-public class Seccion extends PuntoXY implements Serializable{
+public class Seccion implements Serializable{
+    private int x, y;
     private boolean funcional;
- 
+    
     public Seccion(int x, int y){
-        super(x,y);
+        this.x=x;
+        this.y=y;
         this.funcional=true;
     }
 
@@ -16,6 +18,12 @@ public class Seccion extends PuntoXY implements Serializable{
     public boolean getFuncional(){
         return this.funcional;
     }
+    
+    public int getX() {
+        return x;
+    }
 
-
+    public int getY() {
+        return y;
+    }
 }

@@ -111,8 +111,8 @@ public class SistemaBattleship{
 
         Tablero tablero = new Tablero (barcos);
 
-        
         Archivo.guardarArchivo(tablero);
+        
     }
     
 }

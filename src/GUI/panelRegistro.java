@@ -97,7 +97,7 @@ public class panelRegistro extends javax.swing.JPanel {
                 }else{
                     System.out.println("No existe, lo crea");
                     database.registro(txtFieldName.getText(), sdf.format(jDateChooser1.getDate()));
-                    VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),sdf.format(jDateChooser1.getDate())));
+                    VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),jDateChooser1.getDate()));
                     System.out.println(VentanaJuego.getJugador().toString());
                 }
                 VentanaJuego.getPnlRegistro().setVisible(false);
