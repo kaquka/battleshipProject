@@ -85,14 +85,14 @@ public class panelRegistro extends javax.swing.JPanel {
          //PRIMERO PREGUNTA SI EL NOMBRE SE ENCUENTRA BANEADO VERIFICANDO EL ARCHIVO DE BANEADOS
         //SI ESTA BANEADO NO LO DEJA PASAR, SI NO LO ESTA ENTONCES CALCULA SI ES MENOR DE EDAD
         if (!txtFieldName.getText().isEmpty()&&jDateChooser1.getDate()!=null) {
-            LocalDate fecha_nacimientoLD = DateUtils.asLocalDate(jDateChooser1.getDate());
-            LocalDate hoy = LocalDate.now();
-            Period periodo = Period.between(fecha_nacimientoLD, hoy);
+            LocalDate fecha_nacimientoLD = DateUtils.asLocalDate(jDateChooser1.getDate());//
+            LocalDate hoy = LocalDate.now();//
+            Period periodo = Period.between(fecha_nacimientoLD, hoy);//
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-            if(periodo.getYears()>=18){//SI ES MAYOR DE EDAD ENTONCES REVISA SI ESTA EN LA BASE DE DATOS
+            if(/**/periodo.getYears()>=18){//SI ES MAYOR DE EDAD ENTONCES REVISA SI ESTA EN LA BASE DE DATOS
                 if(database.verificaJugador(txtFieldName.getText(), sdf.format(jDateChooser1.getDate()))){
                     System.out.println("existe, lo rellena");
-                    VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),sdf.format(jDateChooser1.getDate())));
+                    VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),jDateChooser1.getDate()));
                     System.out.println(VentanaJuego.getJugador().toString());
                 }else{
                     System.out.println("No existe, lo crea");

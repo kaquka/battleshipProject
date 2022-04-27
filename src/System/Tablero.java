@@ -40,7 +40,7 @@ public class Tablero implements Serializable{
             return 2;
         }else{
             if(iBarco>=0 && iBarco<=(longitud-1)){
-                this.barco[iBarco].hit(x,y);
+                this.barco[iBarco].hit(y);
                 if(this.barco[iBarco].isHundido()){
                     jugador.aumentaBarcosHundidos();
                     jugador.aumentaIntentos();
@@ -51,24 +51,7 @@ public class Tablero implements Serializable{
             return 0;
         }
     }
-    
-    
-    
-    
-    /*  Editado por: Angel
-        Esta funcion va a imprimir una matriz en forma de tablero */
-    /*public void imprimirTablero(int a[][]){
-
-
-        for (int x=0; x < a.length; x++) {
-            
-            for (int y=0; y < a[x].length; y++) {
-                System.out.print ("["+a[x][y]+"]");
-                if (y!=a[x].length-1) System.out.print("\t");
-            }
-            System.out.println("\n");
-        }
-    }*/
+   
 
     /*  Editado por: Azarel Pazos
         Inicializa el tablero en -1, el cual indica que no hay nada en las casillas (no hay barcos)*/
@@ -91,7 +74,7 @@ public class Tablero implements Serializable{
         for(i=0; i<longitud; i++)
             for(j=0; j<secciones; j++){
                 SeccAux=barco[i].getSeccion(j); // toma la seccion j-ésima del barco i-ésimo
-                tablero[SeccAux.getCoordenadaX()][SeccAux.getCoordenadaY()]=i;  // coloca en el tablero la sección j-ésima del barco i-ésimo (en esas posiciones del tablero se coloca el índice del barco)
+                tablero[SeccAux.getX()][SeccAux.getY()]=i;  // coloca en el tablero la sección j-ésima del barco i-ésimo (en esas posiciones del tablero se coloca el índice del barco)
             }
     }
 }

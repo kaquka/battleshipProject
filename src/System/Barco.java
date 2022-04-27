@@ -39,11 +39,11 @@ public class Barco implements Serializable{
         return true;
     }
 
-    public void hit(int x, int y){
+    public void hit(int y){
         int i;
 
         for(i=0; i<getLenghtSecciones(); i++){
-            if(y==SeccionDeBarco[i].getCoordenadaY()){
+            if(y==SeccionDeBarco[i].getY()){
                 SeccionDeBarco[i].noFunciona();
                 break;
             }
