@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author avalo
@@ -37,15 +39,26 @@ public class panelScore extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Edad", "Partidas Ganadas", "Partidas Perdidas", "Total Partidas"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setEnabled(false);
+        jTable1.setFocusable(false);
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 640, 310));
@@ -70,6 +83,10 @@ public class panelScore extends javax.swing.JPanel {
         setVisible(true);
         VentanaJuego.getPnlMenu().setVisible(false);
     }//GEN-LAST:event_atrasBtnActionPerformed
+
+    public JTable getjTableScores() {
+        return jTable1;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
