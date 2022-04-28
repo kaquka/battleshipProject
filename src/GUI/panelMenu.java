@@ -4,8 +4,10 @@
  */
 package GUI;
 
+import Database.databaseConnections;
 import System.Archivo;
 import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *

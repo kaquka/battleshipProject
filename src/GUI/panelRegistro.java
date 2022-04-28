@@ -7,10 +7,13 @@ package GUI;
 import Database.databaseConnections;
 import System.Archivo;
 import System.Jugador;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -78,36 +81,53 @@ public class panelRegistro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinBtnActionPerformed
+        
         // TODO add your handling code here: DEBE LLEVAR A MENU
         //CHECA EN BASE DE DATOS SI ESTA EL JUGADOR, SINO LO REGISTRA Y TIENE QUE GUARDARSE EN LA VARIABLE JUGADOR.
         
-         //PRIMERO PREGUNTA SI EL NOMBRE SE ENCUENTRA BANEADO VERIFICANDO EL ARCHIVO DE BANEADOS
+        //PRIMERO PREGUNTA SI EL NOMBRE SE ENCUENTRA BANEADO VERIFICANDO EL ARCHIVO DE BANEADOS
         //SI ESTA BANEADO NO LO DEJA PASAR, SI NO LO ESTA ENTONCES CALCULA SI ES MENOR DE EDAD
+        
+        try {//SE CREA EL ARCHIVO DE TEXTO PARA LOS RENEGADOS EN CASO DE SER NOMBRES DE MENORES DE EDAD EN CASO DE NO EXIXTIR 
+            FileWriter archivo = new FileWriter("Baneados.txt",true);
+            archivo.close();
+        } catch (IOException ex) {
+            Logger.getLogger(panelRegistro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         if (!txtFieldName.getText().isEmpty()&&jDateChooser1.getDate()!=null) {
             LocalDate fecha_nacimientoLD = DateUtils.asLocalDate(jDateChooser1.getDate());//
             LocalDate hoy = LocalDate.now();//
             Period periodo = Period.between(fecha_nacimientoLD, hoy);//
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-            if(/**/periodo.getYears()>=18){//SI ES MAYOR DE EDAD ENTONCES REVISA SI ESTA EN LA BASE DE DATOS
-                if(database.verificaJugador(txtFieldName.getText(), sdf.format(jDateChooser1.getDate()))){
-                    System.out.println("existe, lo rellena");
-                    VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),jDateChooser1.getDate()));
-                    System.out.println(VentanaJuego.getJugador().toString());
+            
+            if(!checaBaneado()){
+                
+                if(/**/periodo.getYears()>=18){//SI ES MAYOR DE EDAD ENTONCES REVISA SI ESTA EN LA BASE DE DATOS
+                    if(database.verificaJugador(txtFieldName.getText(), sdf.format(jDateChooser1.getDate()))){
+                        System.out.println("existe, lo rellena");
+                        VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),jDateChooser1.getDate()));
+                        System.out.println(VentanaJuego.getJugador().toString());
+                    }else{
+                        System.out.println("No existe, lo crea");
+                        database.registro(txtFieldName.getText(), sdf.format(jDateChooser1.getDate()));
+                        VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),jDateChooser1.getDate()));
+                        System.out.println(VentanaJuego.getJugador().toString());
+                    }
+
+                    VentanaJuego.getJugador().setId(database.consultaID(txtFieldName.getText(), sdf.format(jDateChooser1.getDate())));
+                    VentanaJuego.getPnlRegistro().setVisible(false);
+                    VentanaJuego.getPnlJuego().setTableroLogico(Archivo.elegirArchivo());
+                    VentanaJuego.getPnlJuego().setVisible(true);
                 }else{
-                    System.out.println("No existe, lo crea");
-                    database.registro(txtFieldName.getText(), sdf.format(jDateChooser1.getDate()));
-                    VentanaJuego.setJugador(new Jugador(txtFieldName.getText(),jDateChooser1.getDate()));
-                    System.out.println(VentanaJuego.getJugador().toString());
+                    JOptionPane.showMessageDialog(null, "Eres menor de edad, no puedes jugar");
+                    banea(); //banea nombre LO GUARDA EN UN ARCHIVO
                 }
                 
-                VentanaJuego.getJugador().setId(database.consultaID(txtFieldName.getText(), sdf.format(jDateChooser1.getDate())));
-                VentanaJuego.getPnlRegistro().setVisible(false);
-                VentanaJuego.getPnlJuego().setTableroLogico(Archivo.elegirArchivo());
-                VentanaJuego.getPnlJuego().setVisible(true);
             }else{
-                JOptionPane.showMessageDialog(null, "Eres menor de edad, no puedes jugar");
-            //banea nombre LO GUARDA EN UN ARCHIVO
+                JOptionPane.showMessageDialog(null, "Este nombre está baneado");
             }
+
         }else{
             JOptionPane.showMessageDialog(null, "Llene los campos necesarios.");
         }
@@ -116,6 +136,37 @@ public class panelRegistro extends javax.swing.JPanel {
         //JOptionPane.showMessageDialog(null, birthdate.getText());
     }//GEN-LAST:event_signinBtnActionPerformed
 
+    private boolean checaBaneado(){
+        try {
+            FileReader archivo = new FileReader("Baneados.txt");
+            BufferedReader lectura = new BufferedReader(archivo);
+            String cadena;
+            String cadena2 = txtFieldName.getText();
+            while((cadena = lectura.readLine()) != null){
+                if(cadena.equalsIgnoreCase(cadena2)){
+                    return true;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(panelRegistro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+           Logger.getLogger(panelRegistro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    private void banea(){
+        try {
+            FileWriter archivo = new FileWriter("Baneados.txt",true);
+            try(BufferedWriter almacen = new BufferedWriter(archivo)){
+                almacen.write(txtFieldName.getText()+"\n");
+                almacen.close();
+            }
+            archivo.close();
+        } catch (IOException ex) {
+            Logger.getLogger(panelRegistro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser jDateChooser1;
