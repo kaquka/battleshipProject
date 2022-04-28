@@ -163,7 +163,7 @@ public class databaseConnections {
 
             if (!conn.isClosed()) {
                 Statement stmt=conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT Jugador.Nombre_jug, Jugador.Date_nacimiento, count(SELECT ) FROM Jugador WHERE Nombre_jug");
+                ResultSet rs = stmt.executeQuery("SELECT Jugador.Nombre_jug, Jugador.Date_nacimiento, count(*), Jugador.NumJuegos FROM Jugador INNER JOIN partida ON partida.IDJugador=Jugador.IDJugador GROUP BY partida.IDJugador");
 		rs.next();
             }
 	} catch (Exception e) {
