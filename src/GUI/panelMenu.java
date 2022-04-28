@@ -152,7 +152,10 @@ public class panelMenu extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        VentanaJuego.getPnlScorePersonal().getAreatxtScore().setText(db.mostrarScore(VentanaJuego.getJugador().getNombre(),sdf.format(VentanaJuego.getJugador().getFechaNacimiento().getDate()),VentanaJuego.getJugador().getEdad()));
+        VentanaJuego.getPnlScorePersonal().getAreatxtScore().setText(
+                db.mostrarScore(VentanaJuego.getJugador().getNombre(),
+                        sdf.format(VentanaJuego.getJugador().getFechaNacimiento()),
+                        VentanaJuego.getJugador().getEdad(),VentanaJuego.getJugador().getId()));
         
         VentanaJuego.getPnlMenu().setVisible(false);
         VentanaJuego.getPnlScorePersonal().setVisible(true);

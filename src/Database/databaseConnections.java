@@ -182,6 +182,62 @@ public class databaseConnections {
             }
 	}
     }
+    
+    public String mostrarScore(String jugador, String fecha, int edad, String id) {
+        Connection conn = null;
+        
+        String NombreJugador = "JUGADOR:";
+        String EdadJugador = "EDAD: ";
+        String NPartidas = "VECES QUE HA JUGADO: ";
+        String DatosJuegos = "";
+        
+        try {
+            Class.forName(driver).getDeclaredConstructor().newInstance();
+            conn = DriverManager.getConnection(url+dbName, userName, password);
+
+            if (!conn.isClosed()) {
+                Statement stmt=conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT NumJuegos FROM Jugador WHERE Nombre_jug='"+jugador+"' AND Date_nacimiento ='"+fecha+"'");
+                NombreJugador += jugador;
+                EdadJugador += edad;
+                rs.next();
+                NPartidas += rs.getString(1);
+                
+                //Ahora vamos con determinar las partidas
+                rs=stmt.executeQuery("SELECT Barcos_hundidos FROM partida WHERE IDJugador='"+id+"'");
+                int i=1;
+                while(rs.next()){
+                    
+                    if(Integer.parseInt(rs.getString(1))==10){
+                        
+                        DatosJuegos += "\tJuego "+i+": GANADOR.\n";
+                    }else{
+                        if(Integer.parseInt(rs.getString(1))==1){
+                            DatosJuegos += "\tJuego "+i+": PERDEDOR  "+rs.getString(1)+" barco hundido.\n";
+                        }else{
+                            DatosJuegos += "\tJuego "+i+": PERDEDOR  "+rs.getString(1)+" barcos hundidos.\n";
+                        }
+                    }
+                    i++;
+                }
+                
+                
+            }
+            
+	} catch (Exception e) {
+            System.err.println("Exception: " + e.getMessage());
+	} finally {
+            try {
+		if (conn != null) {
+                    conn.close();
+		}
+            } catch (SQLException e) {
+                System.err.println("Exception: " + e.getMessage());
+            }
+	}
+        return NombreJugador + "\n" + EdadJugador + " años.\n" + NPartidas + "\n"
+            + DatosJuegos + "\n" ;
+    }
 
     public Connection getConexion() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
