@@ -89,7 +89,7 @@ public class panelRegistro extends javax.swing.JPanel {
         //SI ESTA BANEADO NO LO DEJA PASAR, SI NO LO ESTA ENTONCES CALCULA SI ES MENOR DE EDAD
         
         try {//SE CREA EL ARCHIVO DE TEXTO PARA LOS RENEGADOS EN CASO DE SER NOMBRES DE MENORES DE EDAD EN CASO DE NO EXIXTIR 
-            FileWriter archivo = new FileWriter("Baneados.txt",true);
+            FileWriter archivo = new FileWriter("src/Files/Baneados.txt",true);
             archivo.close();
         } catch (IOException ex) {
             Logger.getLogger(panelRegistro.class.getName()).log(Level.SEVERE, null, ex);
@@ -138,7 +138,7 @@ public class panelRegistro extends javax.swing.JPanel {
 
     private boolean checaBaneado(){
         try {
-            FileReader archivo = new FileReader("Baneados.txt");
+            FileReader archivo = new FileReader("src/Files/Baneados.txt");
             BufferedReader lectura = new BufferedReader(archivo);
             String cadena;
             String cadena2 = txtFieldName.getText();
@@ -157,7 +157,7 @@ public class panelRegistro extends javax.swing.JPanel {
     
     private void banea(){
         try {
-            FileWriter archivo = new FileWriter("Baneados.txt",true);
+            FileWriter archivo = new FileWriter("src/Files/Baneados.txt",true);
             try(BufferedWriter almacen = new BufferedWriter(archivo)){
                 almacen.write(txtFieldName.getText()+"\n");
                 almacen.close();
