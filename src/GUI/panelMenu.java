@@ -102,6 +102,7 @@ public class panelMenu extends javax.swing.JPanel {
         // TODO add your handling code here: DEBE LLEVAR A panelScore
         VentanaJuego.getPnlMenu().setVisible(false);
         VentanaJuego.getPnlsScore().setVisible(true);
+        
     }//GEN-LAST:event_scoreBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

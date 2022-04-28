@@ -110,8 +110,9 @@ public class databaseConnections {
 
             if (!conn.isClosed()) {
                 Statement stmt=conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT IDJugador FROM Jugador WHERE Nombre_jug='"+nombre+"' AND Date_nacimiento='"+fechaNacimiento+"')");
-		return rs.getString(1);
+                ResultSet rs = stmt.executeQuery("SELECT IDJugador FROM Jugador WHERE Nombre_jug='"+nombre+"' AND Date_nacimiento='"+fechaNacimiento+"'");
+		rs.next();
+                return rs.getString(1);
             }
 	} catch (Exception e) {
             System.err.println("Exception: " + e.getMessage());
@@ -136,8 +137,34 @@ public class databaseConnections {
 
             if (!conn.isClosed()) {
                 Statement stmt=conn.createStatement();
+                stmt.execute("UPDATE Jugador SET NumJuegos WHERE IDJugador='"+id+"'");
                 stmt.execute("INSERT INTO partida (Barcos_hundidos, IDJugador) VALUES('"+barcosHundidos+"', '"+id+"')");
 		//aca se hace la consulta
+            }
+	} catch (Exception e) {
+            System.err.println("Exception: " + e.getMessage());
+	} finally {
+            try {
+		if (conn != null) {
+                    conn.close();
+		}
+            } catch (SQLException e) {
+                System.err.println("Exception: " + e.getMessage());
+            }
+	}
+    }
+    
+    public void scoreGeneral() {
+        Connection conn = null;
+        
+        try {
+            Class.forName(driver).getDeclaredConstructor().newInstance();
+            conn = DriverManager.getConnection(url+dbName, userName, password);
+
+            if (!conn.isClosed()) {
+                Statement stmt=conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT Jugador.Nombre_jug, Jugador.Date_nacimiento, count(SELECT ) FROM Jugador WHERE Nombre_jug");
+		rs.next();
             }
 	} catch (Exception e) {
             System.err.println("Exception: " + e.getMessage());
