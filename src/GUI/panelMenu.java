@@ -6,8 +6,15 @@ package GUI;
 
 import Database.databaseConnections;
 import System.Archivo;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -109,21 +116,32 @@ public class panelMenu extends javax.swing.JPanel {
         VentanaJuego.getPnlMenu().setVisible(false);
         VentanaJuego.getPnlsScore().setVisible(true);
         
+        int numj,PG=0,PP=0;
+        
        try{
             DefaultTableModel modelo = new DefaultTableModel();
             VentanaJuego.getPnlsScore().getjTableScores().setModel(modelo);
             
             PreparedStatement ps = null;
-            ResultSet rs = null;
-            databaseConnections conn = new databaseConnections();
-            Connection con = conn.getConexion();
+            ResultSet rs = null,rsAux=null;
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+            } catch (InstantiationException ex) {
+                Logger.getLogger(panelMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(panelMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalArgumentException ex) {
+                Logger.getLogger(panelMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvocationTargetException ex) {
+                Logger.getLogger(panelMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Connection conn = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/"+"sql10487845", "sql10487845", "Hk79fsHWJJ");
             
-            String sql = "SELECT Nombre_jug, Edad, Juegos_ganados, Juegos_perdidos, NumJuegos FROM Jugador";
-            ps = con.prepareStatement(sql);
+            String sql = "SELECT * FROM Jugador";
+            ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            
-            ResultSetMetaData rsMd = rs.getMetaData();
-            int cantidadColumnas = rsMd.getColumnCount();
+
+            int cantidadColumnas = 6;
             
             modelo.addColumn("Nombre");
             modelo.addColumn("Edad");
@@ -132,23 +150,67 @@ public class panelMenu extends javax.swing.JPanel {
             modelo.addColumn("Total de Partidas");
             
             while(rs.next()){
+                PG=0;
+                PP=0;
                 
                 Object[] filas = new Object[cantidadColumnas];
                 
-                for (int i = 0 ; i< cantidadColumnas; i++){
                 
-                    filas[i]=rs.getObject(i+1);
+                filas[0]=rs.getString(2);//nombre
+                //filas[1]=1;
+                filas[1]=calcularEdad(ParseFecha(rs.getString(3)));//edad
+                
+                sql = "SELECT Barcos_hundidos FROM partida WHERE IDJugador = "+rs.getString(1);
+                ps = conn.prepareStatement(sql);
+                rsAux = ps.executeQuery();
+                
+                while(rsAux.next()){
+                    if(Integer.parseInt(rsAux.getString(1))==10){
+                        PG++;
+                    }else{
+                        PP++;
+                    }
                 }
+                filas[2]=PG;
+                filas[3]=PP;
+                filas[4]=rs.getString(4);//numero de juegos
+                
                 
                 modelo.addRow(filas);
             }
             
         } catch(SQLException ex) {
             System.err.println(ex.toString());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(panelMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(panelMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(panelMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_scoreBtnActionPerformed
 
+    public int calcularEdad(Date fecha){
+        Period edad = Period.between(fecha.toLocalDate(), LocalDate.now());
+        return edad.getYears();
+    }
+    
+    public static Date ParseFecha(String fecha)
+    {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaDate = null;
+        try {
+            fechaDate = (Date) formato.parse(fecha);
+            return fechaDate;
+        } 
+        catch (ParseException ex) 
+        {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
