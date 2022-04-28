@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import javax.swing.JTextArea;
+
 /**
  *
  * @author avalo
@@ -30,7 +32,7 @@ public class panelScorePersonal extends javax.swing.JPanel {
         labelScore = new javax.swing.JLabel();
         atrasBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        areatxtScore = new javax.swing.JTextArea();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -46,10 +48,12 @@ public class panelScorePersonal extends javax.swing.JPanel {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("JUGADOR");
-        jScrollPane1.setViewportView(jTextArea1);
+        areatxtScore.setEditable(false);
+        areatxtScore.setColumns(20);
+        areatxtScore.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        areatxtScore.setRows(5);
+        areatxtScore.setText("JUGADOR");
+        jScrollPane1.setViewportView(areatxtScore);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,8 +83,8 @@ public class panelScorePersonal extends javax.swing.JPanel {
                         .addGap(28, 28, 28)
                         .addComponent(atrasBtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -101,12 +105,17 @@ public class panelScorePersonal extends javax.swing.JPanel {
         VentanaJuego.getPnlMenu().setVisible(true);
     }//GEN-LAST:event_atrasBtnActionPerformed
 
+    public JTextArea getAreatxtScore() {
+        return areatxtScore;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areatxtScore;
     private javax.swing.JButton atrasBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelScore;
     // End of variables declaration//GEN-END:variables
 }

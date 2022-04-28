@@ -7,6 +7,7 @@ package GUI;
 import Database.databaseConnections;
 import System.Archivo;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,6 +20,7 @@ public class panelMenu extends javax.swing.JPanel {
      * Creates new form panelMenu
      */
     private static Panel siu;
+    private static databaseConnections db;
     
     public panelMenu() {
         
@@ -27,6 +29,8 @@ public class panelMenu extends javax.swing.JPanel {
         siu.setBounds(0, 0, 800, 600);
         siu.setVisible(true);
         add(siu);
+        
+        db=new databaseConnections();
     }
 
     /**
@@ -147,8 +151,12 @@ public class panelMenu extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        VentanaJuego.getPnlScorePersonal().getAreatxtScore().setText(db.mostrarScore(VentanaJuego.getJugador().getNombre(),sdf.format(VentanaJuego.getJugador().getFechaNacimiento().getDate()),VentanaJuego.getJugador().getEdad()));
+        
         VentanaJuego.getPnlMenu().setVisible(false);
         VentanaJuego.getPnlScorePersonal().setVisible(true);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
