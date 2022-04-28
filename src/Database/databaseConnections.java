@@ -158,31 +158,6 @@ public class databaseConnections {
 	}
     }
     
-    public void scoreGeneral() {
-        Connection conn = null;
-        
-        try {
-            Class.forName(driver).getDeclaredConstructor().newInstance();
-            conn = DriverManager.getConnection(url+dbName, userName, password);
-
-            if (!conn.isClosed()) {
-                Statement stmt=conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT Jugador.Nombre_jug, Jugador.Date_nacimiento, count(*), Jugador.NumJuegos FROM Jugador INNER JOIN partida ON partida.IDJugador=Jugador.IDJugador GROUP BY partida.IDJugador");
-		rs.next();
-            }
-	} catch (Exception e) {
-            System.err.println("Exception: " + e.getMessage());
-	} finally {
-            try {
-		if (conn != null) {
-                    conn.close();
-		}
-            } catch (SQLException e) {
-                System.err.println("Exception: " + e.getMessage());
-            }
-	}
-    }
-    
     public String mostrarScore(String jugador, String fecha, int edad, String id) {
         Connection conn = null;
         
