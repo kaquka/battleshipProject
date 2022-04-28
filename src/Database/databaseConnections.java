@@ -130,6 +130,7 @@ public class databaseConnections {
     
     public void agregarPartida(String id, int barcosHundidos) {
         Connection conn = null;
+        int aux;
         
         try {
             Class.forName(driver).getDeclaredConstructor().newInstance();
@@ -137,8 +138,11 @@ public class databaseConnections {
 
             if (!conn.isClosed()) {
                 Statement stmt=conn.createStatement();
-                stmt.execute("UPDATE Jugador SET NumJuegos WHERE IDJugador='"+id+"'");
-                stmt.execute("INSERT INTO partida (Barcos_hundidos, IDJugador) VALUES('"+barcosHundidos+"', '"+id+"')");
+                ResultSet rs = stmt.executeQuery("SELECT NumJuegos FROM Jugador WHERE IDJugador="+id);
+                rs.next();
+                aux=rs.getInt(1)+1;
+                stmt.execute("UPDATE Jugador SET NumJuegos="+aux+" WHERE IDJugador="+id);
+                stmt.execute("INSERT INTO partida (Barcos_hundidos, IDJugador) VALUES( '"+barcosHundidos+"', "+id+")");
 		//aca se hace la consulta
             }
 	} catch (Exception e) {
