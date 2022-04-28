@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -158,7 +159,7 @@ public class panelMenu extends javax.swing.JPanel {
                 
                 filas[0]=rs.getString(2);//nombre
                 //filas[1]=1;
-                filas[1]=calcularEdad(ParseFecha(rs.getString(3)));//edad
+                filas[1]=calcEdad(rs.getString(3));//edad
                 
                 sql = "SELECT Barcos_hundidos FROM partida WHERE IDJugador = "+rs.getString(1);
                 ps = conn.prepareStatement(sql);
@@ -190,25 +191,14 @@ public class panelMenu extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_scoreBtnActionPerformed
-
-    public int calcularEdad(Date fecha){
-        Period edad = Period.between(fecha.toLocalDate(), LocalDate.now());
-        return edad.getYears();
-    }
     
-    public static Date ParseFecha(String fecha)
-    {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaDate = null;
-        try {
-            fechaDate = (Date) formato.parse(fecha);
-            return fechaDate;
-        } 
-        catch (ParseException ex) 
-        {
-            System.out.println(ex);
-        }
-        return fechaDate;
+    public static int calcEdad(String fecha){
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fechaNac = LocalDate.parse(fecha, fmt);
+        LocalDate ahora = LocalDate.now();
+
+        Period periodo = Period.between(fechaNac, ahora);
+        return periodo.getYears();
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

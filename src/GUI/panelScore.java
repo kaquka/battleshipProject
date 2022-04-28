@@ -64,7 +64,7 @@ public class panelScore extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 640, 310));
 
         labelScore.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
-        labelScore.setText("Score...");
+        labelScore.setText("Score general battleship");
         add(labelScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
 
         atrasBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/flecha-hacia-atras.png"))); // NOI18N
