@@ -103,10 +103,43 @@ public class panelMenu extends javax.swing.JPanel {
         VentanaJuego.getPnlMenu().setVisible(false);
         VentanaJuego.getPnlsScore().setVisible(true);
         
-        ResultSet rs;
-        
-        rs.next();
-        rs.getString(2);
+       try{
+            DefaultTableModel modelo = new DefaultTableModel();
+            VentanaJuego.getPnlsScore().getjTableScores().setModel(modelo);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            databaseConnections conn = new databaseConnections();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT Nombre_jug, Edad, Juegos_ganados, Juegos_perdidos, NumJuegos FROM Jugador";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Edad");
+            modelo.addColumn("Partidas Ganadas");
+            modelo.addColumn("Partidas Perdidas");
+            modelo.addColumn("Total de Partidas");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for (int i = 0 ; i< cantidadColumnas; i++){
+                
+                    filas[i]=rs.getObject(i+1);
+                }
+                
+                modelo.addRow(filas);
+            }
+            
+        } catch(SQLException ex) {
+            System.err.println(ex.toString());
+        }
         
     }//GEN-LAST:event_scoreBtnActionPerformed
 
