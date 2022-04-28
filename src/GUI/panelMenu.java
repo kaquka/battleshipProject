@@ -5,7 +5,7 @@
 package GUI;
 
 import System.Archivo;
-import System.Jugador;
+import java.sql.*;
 
 /**
  *
@@ -102,6 +102,11 @@ public class panelMenu extends javax.swing.JPanel {
         // TODO add your handling code here: DEBE LLEVAR A panelScore
         VentanaJuego.getPnlMenu().setVisible(false);
         VentanaJuego.getPnlsScore().setVisible(true);
+        
+        ResultSet rs;
+        
+        rs.next();
+        rs.getString(2);
         
     }//GEN-LAST:event_scoreBtnActionPerformed
 
