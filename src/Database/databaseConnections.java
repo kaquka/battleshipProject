@@ -13,10 +13,10 @@ import java.sql.*;
  */
 public class databaseConnections {
     private static final String url = "jdbc:mysql://sql10.freesqldatabase.com:3306/";
-    private static final String dbName = "sql10487845";
+    private static final String dbName = "sql10489691";
     private static final String driver = "com.mysql.cj.jdbc.Driver";
-    private static final String userName = "sql10487845";
-    private static final String password = "Hk79fsHWJJ";
+    private static final String userName = "sql10489691";
+    private static final String password = "yQkdRGx1Hk";
     
     public void consultaTemplate() {
         Connection conn = null;

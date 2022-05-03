@@ -136,7 +136,7 @@ public class panelMenu extends javax.swing.JPanel {
             } catch (InvocationTargetException ex) {
                 Logger.getLogger(panelMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Connection conn = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/"+"sql10487845", "sql10487845", "Hk79fsHWJJ");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/"+"sql10489691", "sql10489691", "yQkdRGx1Hk");
             
             String sql = "SELECT * FROM Jugador";
             ps = conn.prepareStatement(sql);
